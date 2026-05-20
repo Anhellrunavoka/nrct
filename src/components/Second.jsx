@@ -1,10 +1,16 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 
 const Second=()=>{
 
         const [text, setText] = useState('welcome');
-
         const [user, setUser] = useState({name:'John',age:30});
+
+        useEffect(()=>{
+            console.log('useEffect');
+            return()=>{
+                console.log('clean up');
+            }
+        },[user]);
 
         const handleChangeName=()=>{
             setUser({...user,name: text})

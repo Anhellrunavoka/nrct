@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ToDoList.css";
 import ToDoFormAdd from './ToDoFormAdd';
 import Filters from './Filters';
@@ -7,9 +7,20 @@ import items from "./data";
 import { nanoid } from 'nanoid'
 
 const ToDoList = () => {
-
-
     const[tasks,setTasks]=useState(items);
+    const [activeFilter, setActiveFilter] = useState('All');
+
+    useEffect(()=>{
+        const data=localStorage.getItem('tasks');
+        if(data){
+            setTasks(JSON.parse(data));
+        }
+    },[]);
+
+    useEffect(()=>{
+        localStorage.setItem('tasks',JSON.stringify(tasks));
+    },[tasks]);
+
 
     const addTask=(value)=>{
         setTasks([...tasks,{id:nanoid(),title:value,done:false}])
@@ -20,11 +31,18 @@ const ToDoList = () => {
     }
 
     const toggleDone=(id)=>{
-        setTasks(tasks.map(item=>item.id===id?{...item,done:!item.done}:item))
+        setTasks(tasks.map((item)=>item.id===id?{...item,done:!item.done}:item))
     }
     const changeTitle=(id,title)=>{
         setTasks(tasks.map((item)=>(item.id===id?{...item,title}:item)),);
     }
+
+    const filtersData={
+        All:()=>true,
+        Done:(item)=>item.done,
+       "Todo task":(item)=>!item.done
+    }
+
     return (
         <div className="container-todo">
             <h1>To Do List</h1>
@@ -33,10 +51,12 @@ const ToDoList = () => {
 
             <div className='todo'>
 
-                    <Filters/>
+                    <Filters activeFilter={activeFilter} 
+                    setActiveFilter={setActiveFilter}
+                    filtersData={filtersData}/>
 
                 <div className='list'>
-                    {tasks.map(item=><Item item={item} 
+                    {tasks.filter(filtersData[activeFilter]).map(item=><Item item={item} 
                     key={item.id} 
                     removeTask={removeTask}
                     toggleDone={toggleDone}
@@ -45,6 +65,6 @@ const ToDoList = () => {
             </div>
         </div>
     );
-}
+};
 
 export default ToDoList;
