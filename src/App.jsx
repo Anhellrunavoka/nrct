@@ -1,15 +1,15 @@
+import { Outlet,Link,NavLink } from "react-router";
 import"./App.css"
-import ToDoList from "./components/ToDOList/ToDoList";
-// import Second from "./components/Second";
-// import First from "./components/First";
 import Products from "./components/products/products";
+import Header from ".//components/Header/Header";
+
+
 function App() {
   return (
     <>
-       {/*<ToDoList/> */}
-      {/* <First/> */}
-      {/*<Second/>*/}
-      <Products/>
+    {/* <Header/> */}
+    {/* <Outlet/> */}
+    <Products/>
     </>
   );
 

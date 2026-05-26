@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import classNames from "classnames";
-const Item = ({item,removeTask,toggleDone,changeTitle}) => {
+const Item = ({item,removeTask,toggleDone,changeTitle,setModalData}) => {
     const [isChecked,setIsChecked]=useState(item.done);
     const[isEditable,setIsEditable]=useState(false);
     const [title, setTitle] = useState(item.title);
@@ -30,7 +30,8 @@ const Item = ({item,removeTask,toggleDone,changeTitle}) => {
                 <span className={classNames('task-title',{done:item.done})} onClick={()=>setIsEditable(true)}>
                     {item.title}</span>
                 <button className='remove-btn' onClick={()=>removeTask(item.id)}>Delete</button>
-            </div>
+                <button onClick={()=>setModalData(item)}>Open Data</button>
+             </div>
         );
 }
 

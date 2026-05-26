@@ -48,11 +48,10 @@ const ProductCard = ({
       {discount && <p className="discount">Знижка {discount}%</p>}
 
       <button
-        disabled={!inStock}
-        onClick={() => onAddToCart(id)}
-        className={inStock ? "btn" : "btn disabled"}
-      >
-        {inStock ? "В кошик" : "Немає в наявності"}
+            disabled={!inStock}
+            onClick={() => onAddToCart(id)}
+            className={inStock ? "btn" : "btn disabled"}>
+            {inStock ? "Додати в кошик" : "Немає в наявності"}
       </button>
     </div>
   );
