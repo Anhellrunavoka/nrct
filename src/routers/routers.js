@@ -4,6 +4,9 @@ import About from "../pages/About";
 import ToDoList from "../components/ToDOList/ToDoList";
 import Users from "../pages/Users";
 import UserDetail from "../pages/UserDetail";
+import ProductPage from "../pages/productPage";
+import ProductsDetail from "../pages/productsDetail";
+import Products from "../components/products/products";
 const { createBrowserRouter } = require("react-router");
 
 const router=createBrowserRouter([
@@ -15,21 +18,33 @@ const router=createBrowserRouter([
                 index:true,
                 element:<h1>Home</h1>
             },
+            // {
+            //   path:"/about",
+            //     element:<About/>  
+            // },
+            // {
+            //     path:"/todo",
+            //     element:<ToDoList/>
+            // },
+            // {
+            //     path:"/users",
+            //     element:<Users/>
+            // },
+            // {
+            //     path:"/users/:id",
+            //     element:<UserDetail/>
+            // }
             {
-              path:"/about",
-                element:<About/>  
+                path: "/products",
+                element: <Products />
             },
             {
-                path:"/todo",
-                element:<ToDoList/>
+                path: "/prodPage",
+                element: <ProductPage />
             },
             {
-                path:"/users",
-                element:<Users/>
-            },
-            {
-                path:"/users/:id",
-                element:<UserDetail/>
+                path: "/products/:id",
+                element: <ProductsDetail />
             }
         ]
     },

@@ -4,9 +4,11 @@ import items from "./data";
 import ProductCard from "./productCard";
 import Filters from "./filters";
 
+
 import CartReducer, { CartActionTypes } from "../../reducers/CartReducer";
 
 const Products = () => {
+
 
     const initCart = () => {
           const savedCart = localStorage.getItem("cart");
