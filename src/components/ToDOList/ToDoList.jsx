@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useReducer } from 'react';
+import React, { useEffect, useState,useReducer, useCallback, useMemo } from 'react';
 import "./ToDoList.css";
 import ToDoFormAdd from './ToDoFormAdd';
 import Filters from './Filters';
@@ -20,7 +20,7 @@ const ToDoList = () => {
         const data=localStorage.getItem('tasks');
         if(data){
             dispatch({
-                type:TaskActionTypes.INIT_TASKS,
+                type:TaskActionTypes.FILL_TASKS,
                 payload:JSON.parse(data)
             });
         }
@@ -30,47 +30,51 @@ const ToDoList = () => {
         localStorage.setItem('tasks',JSON.stringify(tasks));
     },[tasks]);
 
-    const setModalData=(task)=>{
+    const setModalData=useCallback((task)=>{
         setVisibleModal(true);
         setSelectedTask(task);
-    }
+    },[]);
 
-    const addTask=(value)=>{
+    const addTask=useCallback((value)=>{
         dispatch({
             type:TaskActionTypes.ADD_TASK,
             payload:{id:nanoid(),title:value,done:false}
         });
         // setTasks([...tasks,{id:nanoid(),title:value,done:false}])
-    }
+    },[]);
 
-    const removeTask=(id)=>{
+    const removeTask=useCallback((id)=>{
         dispatch({
             type:TaskActionTypes.REMOVE_TASK,
             payload:id
         });
         //setTasks(tasks.filter(item=>item.id!==id))
-    }
+    },[]);
 
-    const toggleDone=(id)=>{
+    const toggleDone=useCallback((id)=>{
         dispatch({
             type:TaskActionTypes.TOGGLE_DONE,
             payload:id
         });
         // setTasks(tasks.map((item)=>item.id===id?{...item,done:!item.done}:item))
-    }
-    const changeTitle=(id,title)=>{
+    },[]);
+    const changeTitle=useCallback((id,title)=>{
         dispatch({
             type:TaskActionTypes.CHANGE_TITLE,
             payload:{id,title}
         });
         //setTasks(tasks.map((item)=>(item.id===id?{...item,title}:item)),);
-    }
+    },[]);
 
-    const filtersData={
+    const filtersData=useMemo(() => ({
         All:()=>true,
         Done:(item)=>item.done,
        "Todo task":(item)=>!item.done
-    }
+    }),[]);
+
+     const filteredTasks = useMemo(() => {
+        return tasks.filter(filtersData[activeFilter]);
+    }, [tasks, activeFilter, filtersData]);
 
     return (
         <div className="container-todo">

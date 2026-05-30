@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 const CounterValue = ({value,id}) => {
     return (
@@ -8,4 +8,4 @@ const CounterValue = ({value,id}) => {
     );
 }
 
-export default memo(CounterValue);
+export default React.memo(CounterValue);

@@ -11,7 +11,7 @@ const ThemeProvider = ({ children }) => {
             return savedTheme;
         }
 
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
+        return window.matchMedia("prefers-color-scheme: dark").matches
             ? "dark"
             : "light";
     });

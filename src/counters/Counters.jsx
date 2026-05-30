@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import CounterValue from './CounterValue';
 import IsFive from './IsFive';
 
 const Counters = () => {
     const [count1, setCount1] = useState(1);
     const [count2, setCount2] = useState(1);
-    // const someFunc=()=>{console.log("some func"),[]};
+    const someFunc=useCallback(()=>{console.log("some func")},[]);
     return (
         <div>
             <div>
                 <button onClick={() => setCount1(count1 - 1)}>-</button>
-                <CounterValue value={count1} id="count1" />
+                <CounterValue value={count1} id="count1" func={someFunc} />
                 <button onClick={() => setCount1(count1 + 1)}>+</button>
             </div>
 

@@ -14,5 +14,5 @@ const Modal = ({children,visible,onClose }) => {
         </div>
     );
 }
-export default Modal;
+export default React.memo(Modal);
  

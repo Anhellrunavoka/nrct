@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root[data-theme='light']{
+:root[data-theme='light']{
     --bg:#fff;
     --text:#000;
 }
@@ -11,7 +11,7 @@
     --text:#fff;
 }
 body{
-    background-color: var(--bg);
+    background-color: var(--bg)!important;
     color: var(--text);
-} */
+}
 

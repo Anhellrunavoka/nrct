@@ -35,4 +35,4 @@ const Item = ({item,removeTask,toggleDone,changeTitle,setModalData}) => {
         );
 }
 
-export default Item;
+export default React.memo(Item);

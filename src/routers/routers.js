@@ -24,54 +24,54 @@ const router=createBrowserRouter([
                 element:<h1>Home</h1>,
                 errorElement:<ErrorBoundary/>
             },
-            // {
-            //   path:"/about",
-            //     element:<About/> ,
-            //     errorElement:<ErrorBoundary/> 
-            // },
-            // {
-            //     path:"/todo",
-            //     element:<ToDoList/>,
-            //     errorElement:<ErrorBoundary/>
-            // },
-            // {
-            //     path:"/users",
-            //     element:<Users/>,
-            //     loader:getUsers,
-            //     errorElement:<ErrorBoundary/>
-            // },
-            // {
-            //     path:"/users/:id",
-            //     element:<UserDetail/>,
-            //     loader:getUserDetails,
-            //     errorElement:<ErrorBoundary/>
-            // },
-            // {
-            //     path:'/search',
-            //     element:<SearchResults/>,
-            //     loader:searchUsers,
-            //     errorElement:<ErrorBoundary/>
-            //}
             {
-                path:'/search',
-                element:<SearchResults/>,
-                loader:searchProducts,
+              path:"/about",
+                element:<About/> ,
+                errorElement:<ErrorBoundary/> 
+            },
+            {
+                path:"/todo",
+                element:<ToDoList/>,
                 errorElement:<ErrorBoundary/>
             },
             {
-                path: "/products",
-                element: <Products />
+                path:"/users",
+                element:<Users/>,
+                loader:getUsers,
+                errorElement:<ErrorBoundary/>
             },
             {
-                path: "/prodPage",
-                element: <ProductPage />,
-                loader:getProducts
+                path:"/users/:id",
+                element:<UserDetail/>,
+                loader:getUserDetails,
+                errorElement:<ErrorBoundary/>
             },
             {
-                path: "/products/:id",
-                element: <ProductsDetail />,
-                loader:getProductDetail
+                path:'/search',
+                element:<SearchResults/>,
+                loader:searchUsers,
+                errorElement:<ErrorBoundary/>
             }
+            // {
+            //     path:'/search',
+            //     element:<SearchResults/>,
+            //     loader:searchProducts,
+            //     errorElement:<ErrorBoundary/>
+            // },
+            // {
+            //     path: "/products",
+            //     element: <Products />
+            // },
+            // {
+            //     path: "/prodPage",
+            //     element: <ProductPage />,
+            //     loader:getProducts
+            // },
+            // {
+            //     path: "/products/:id",
+            //     element: <ProductsDetail />,
+            //     loader:getProductDetail
+            // }
         ]
     },
     {

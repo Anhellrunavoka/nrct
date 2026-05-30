@@ -5,12 +5,12 @@ export const TaskActionTypes={
     REMOVE_TASK:'REMOVE_TASK',
     TOGGLE_DONE:'TOGGLE_DONE',
     CHANGE_TITLE:'CHANGE_TITLE',
-    FIll_TASKS:'FILL_TASKS'
+    FILL_TASKS:'FILL_TASKS'
 }
 const TaskReducer = (state, action) => {
     switch (action.type) {
         case TaskActionTypes.ADD_TASK:
-            return[...state,{id:nanoid(),title:action.payload,done:false}]
+            return[...state,action.payload];
         case TaskActionTypes.REMOVE_TASK:
             return state.filter(item => item.id !== action.payload);
         case TaskActionTypes.TOGGLE_DONE:

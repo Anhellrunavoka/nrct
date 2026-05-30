@@ -12,4 +12,4 @@ const Filters = ({ setActiveFilter,activeFilter,filtersData }) => {
     );
 };
 
-export default Filters;
+export default React.memo(Filters);
