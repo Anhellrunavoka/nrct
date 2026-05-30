@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Menu from "./Menu";
+import Search from "./Search";
+import { ThemeContext } from "../../contexts/ThemeContext";
 const Header = () => {
+    const {theme, toggleTheme} = useContext(ThemeContext);
     return (
-        <div>
+        <header className={`flex justify-between items-center p-4 theme-${theme}`}>
+            <Search/>
             <Menu/>
-        </div>
+            <button onClick={toggleTheme}>{theme}</button>
+        </header>
     );
 }       
 export default Header;

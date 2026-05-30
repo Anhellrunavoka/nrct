@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useLoaderData } from "react-router";
 const ProductsDetail = () => {
-    const { id } = useParams();
-    const[product,setProduct]=useState({});
+    const product=useLoaderData();
 
-    useEffect(() => {
-        const getProductDetail = async () => {
-            const response = await axios.get(
-                `https://fakestoreapi.com/products/${id}`,
-            );
-            setProduct(response.data);
-        };
-        getProductDetail();
-    }, [id]);
+   
     return (
         <div>
             <h1 className='text-3xl font-bold text-cyan-800'>Product Detail</h1>
@@ -26,5 +17,6 @@ const ProductsDetail = () => {
             <p><strong>Stock Status:</strong> {product.rating?.count > 0 ? "In Stock" : "Out of Stock"}</p>
         </div>
     );
+
 }   
 export default ProductsDetail;

@@ -7,6 +7,11 @@ import UserDetail from "../pages/UserDetail";
 import ProductPage from "../pages/productPage";
 import ProductsDetail from "../pages/productsDetail";
 import Products from "../components/products/products";
+import { getUsers, searchUsers } from "../loaders/usersLoaders";
+import { getUserDetails } from "../loaders/usersLoaders";
+import SearchResults from "../pages/SearchResults";
+import ErrorBoundary from "../components/ErrorBoundary";
+import { getProductDetail, getProducts, searchProducts } from "../loaders/productLoaders";
 const { createBrowserRouter } = require("react-router");
 
 const router=createBrowserRouter([
@@ -16,35 +21,56 @@ const router=createBrowserRouter([
         children:[
             {
                 index:true,
-                element:<h1>Home</h1>
+                element:<h1>Home</h1>,
+                errorElement:<ErrorBoundary/>
             },
             // {
             //   path:"/about",
-            //     element:<About/>  
+            //     element:<About/> ,
+            //     errorElement:<ErrorBoundary/> 
             // },
             // {
             //     path:"/todo",
-            //     element:<ToDoList/>
+            //     element:<ToDoList/>,
+            //     errorElement:<ErrorBoundary/>
             // },
             // {
             //     path:"/users",
-            //     element:<Users/>
+            //     element:<Users/>,
+            //     loader:getUsers,
+            //     errorElement:<ErrorBoundary/>
             // },
             // {
             //     path:"/users/:id",
-            //     element:<UserDetail/>
-            // }
+            //     element:<UserDetail/>,
+            //     loader:getUserDetails,
+            //     errorElement:<ErrorBoundary/>
+            // },
+            // {
+            //     path:'/search',
+            //     element:<SearchResults/>,
+            //     loader:searchUsers,
+            //     errorElement:<ErrorBoundary/>
+            //}
+            {
+                path:'/search',
+                element:<SearchResults/>,
+                loader:searchProducts,
+                errorElement:<ErrorBoundary/>
+            },
             {
                 path: "/products",
                 element: <Products />
             },
             {
                 path: "/prodPage",
-                element: <ProductPage />
+                element: <ProductPage />,
+                loader:getProducts
             },
             {
                 path: "/products/:id",
-                element: <ProductsDetail />
+                element: <ProductsDetail />,
+                loader:getProductDetail
             }
         ]
     },

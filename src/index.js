@@ -5,11 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router';
 import router from './routers/routers';
+import ThemeProvider from './contexts/ThemeContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <RouterProvider router={router}/>
 
+
+root.render(
+  <ThemeProvider>
+    <RouterProvider router={router} />
+  </ThemeProvider>
 );
 
 
